@@ -8,8 +8,10 @@ import { ConsentArtifact } from './interface/req-checker.interface';
 export class ReqCheckerService {
   constructor(private readonly httpService: HttpService) { }
 
-  async reqChecker(consentArtifact: ConsentArtifact, gqlQuery: string) {
-    if (!isSubset(consentArtifact.data, gqlQuery)) {
+  async reqChecker(consentArtifact: any, gqlQuery: string) {
+    console.log('consentArt: ', consentArtifact);
+    console.log('gqlQuery: ', gqlQuery);
+    if (!isSubset(consentArtifact.consent_artifact.data, gqlQuery)) {
       throw new ForbiddenException('Forbidden.');
     } else {
       // call the resolver here
