@@ -4,7 +4,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ReqCheckerModule } from './req-checker/req-checker.module';
-
+import { TerminusModule } from '@nestjs/terminus';
+import { HttpModule } from '@nestjs/axios';
 @Module({
   imports: [
     ReqCheckerModule,
@@ -15,8 +16,10 @@ import { ReqCheckerModule } from './req-checker/req-checker.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    TerminusModule,
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
